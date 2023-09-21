@@ -14,9 +14,9 @@
 </head>
 
 <body>
-    <a href="{{ route('vente.index') }}" class="btn btn-primary">Liste des ventes</a>
+    {{-- <a href="{{ route('vente.index') }}" class="btn btn-primary">Liste des ventes</a>
     <a href="{{ route('produit.index') }}" class="btn btn-primary">Liste des produits</a>
-    <a href="{{ route('marque.index') }}" class="btn btn-primary">Liste des marques</a>
+    <a href="{{ route('marque.index') }}" class="btn btn-primary">Liste des marques</a> --}}
 
     @yield('content')
 </body>

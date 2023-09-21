@@ -12,7 +12,8 @@ class MarqueController extends Controller
      */
     public function index()
     {
-        //
+        $marques = Marque::all();
+        return view('marque.index', compact('marques'));
     }
 
     /**

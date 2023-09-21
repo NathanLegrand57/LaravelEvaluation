@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MarqueController;
+use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\VenteController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('/', VenteController::class);
+Route::resource('/produit', ProduitController::class);
+Route::resource('/marque', MarqueController::class);
 

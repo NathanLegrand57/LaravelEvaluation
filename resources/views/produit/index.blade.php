@@ -4,17 +4,15 @@
 
 @section('content')
 
-{{-- <a href="{{ route('vente.create') }}" class="btn btn-primary">Ajouter</a> --}}
+    <h2>Liste des produits</h2>
+    @forelse ($produits as $produit)
 
-@forelse ($produits as $produit)
-      <li>
-        <div class="mb-2">
-          {{ $produit->nom }}
-            {{-- <a href="{{ route('vente.edit', ['vente' => $vente->id]) }}" class="btn btn-sm btn-warning">Modifier</a> --}}
-        </div>
-      </li>
+            <div class="mb-2">
+                    {{ $produit->nom }}
+            </div>
+
     @empty
-      <li>
-        Aucun produit connu
-      </li>
+        <li>
+            Aucun produit connu
+        </li>
     @endforelse

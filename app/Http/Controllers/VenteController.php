@@ -12,7 +12,8 @@ class VenteController extends Controller
      */
     public function index()
     {
-        //
+        $ventes = Vente::all();
+        return view('vente.index', compact('ventes'));
     }
 
     /**
@@ -20,7 +21,7 @@ class VenteController extends Controller
      */
     public function create()
     {
-        //
+        return view('vente.create');
     }
 
     /**

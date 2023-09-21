@@ -4,13 +4,13 @@
 
 @section('content')
 
-<h2>Liste des marques</h2>
-@forelse ($marques as $marque)
+    <h2>Liste des marques</h2>
+    @forelse ($marques as $marque)
         <div class="mb-2">
-          {{ $marque->nom }}
+            {{ $marque->nom }}
         </div>
     @empty
-      <li>
-        Aucune marque connue
-      </li>
+        <li>
+            Aucune marque connue
+        </li>
     @endforelse

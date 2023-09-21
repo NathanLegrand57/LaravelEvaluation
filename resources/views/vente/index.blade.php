@@ -4,13 +4,13 @@
 
 @section('content')
 
-<h2>Liste des ventes</h2>
-@forelse ($ventes as $vente)
+    <h2>Liste des ventes</h2>
+    @forelse ($ventes as $vente)
         <div class="mb-2">
-          {{ $vente->produit }}
+            {{ $vente->produit }}
         </div>
     @empty
-      <li>
-        Aucune vente connue
-      </li>
+        <li>
+            Aucune vente connue
+        </li>
     @endforelse

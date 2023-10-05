@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [VenteController::class, 'index']);
 
-
-Route::resource('/', VenteController::class);
+Route::resource('/vente', VenteController::class);
 Route::resource('/produit', ProduitController::class);
 Route::resource('/marque', MarqueController::class);
 

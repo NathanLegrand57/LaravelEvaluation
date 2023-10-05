@@ -6,8 +6,9 @@
 
     <h2>Liste des ventes</h2>
     @forelse ($ventes as $vente)
+        {{-- @forelse ($produits as $produit) --}}
         <div class="mb-2">
-            {{ $vente->produit }}
+            {{ $vente->produit }} {{ $produit->$prix }}
         </div>
     @empty
         <li>

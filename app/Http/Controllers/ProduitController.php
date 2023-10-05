@@ -21,7 +21,7 @@ class ProduitController extends Controller
      */
     public function create()
     {
-        //
+        return view('produit.create');
     }
 
     /**
@@ -29,7 +29,18 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $produit = new Produit();
+
+        $produit->nom = $data['nom'];
+        $produit->pays = $data['prix'];
+        $produit->marque = $data['marque'];
+        $produit->reference = $data['reference'];
+
+        $produit->save();
+
+        return redirect()->route('produit.index');
     }
 
     /**
@@ -45,7 +56,9 @@ class ProduitController extends Controller
      */
     public function edit(Produit $produit)
     {
-        //
+        $marques = Produit::all();
+
+        return view('produit.edit', compact('produit'));
     }
 
     /**
@@ -53,7 +66,16 @@ class ProduitController extends Controller
      */
     public function update(Request $request, Produit $produit)
     {
-        //
+        $data = $request->all();
+
+        $produit->nom = $data['nom'];
+        $produit->pays = $data['prix'];
+        $produit->marque = $data['marque'];
+        $produit->reference = $data['reference'];
+
+        $produit->save();
+
+        return redirect()->route('produit.index');
     }
 
     /**

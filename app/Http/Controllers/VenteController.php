@@ -29,7 +29,16 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $vente = new Vente();
+
+        $vente->produit = $data['produit'];
+        $vente->quantite = $data['quantite'];
+
+        $vente->save();
+
+        return redirect()->route('vente.index');
     }
 
     /**
@@ -45,7 +54,9 @@ class VenteController extends Controller
      */
     public function edit(Vente $vente)
     {
-        //
+        $marques = Vente::all();
+
+        return view('vente.edit', compact('vente'));
     }
 
     /**
@@ -53,7 +64,14 @@ class VenteController extends Controller
      */
     public function update(Request $request, Vente $vente)
     {
-        //
+        $data = $request->all();
+
+        $vente->produit = $data['produit'];
+        $vente->quantite = $data['quantite'];
+
+        $vente->save();
+
+        return redirect()->route('vente.index');
     }
 
     /**

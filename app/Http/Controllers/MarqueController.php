@@ -21,7 +21,7 @@ class MarqueController extends Controller
      */
     public function create()
     {
-        //
+        return view('marque.create');
     }
 
     /**
@@ -29,7 +29,16 @@ class MarqueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $marque = new Marque();
+
+        $marque->nom = $data['nom'];
+        $marque->pays = $data['pays'];
+
+        $marque->save();
+
+        return redirect()->route('marque.index');
     }
 
     /**
@@ -45,7 +54,9 @@ class MarqueController extends Controller
      */
     public function edit(Marque $marque)
     {
-        //
+        $marques = Marque::all();
+
+        return view('marque.edit', compact('marque'));
     }
 
     /**
@@ -53,7 +64,14 @@ class MarqueController extends Controller
      */
     public function update(Request $request, Marque $marque)
     {
-        //
+        $data = $request->all();
+
+        $marque->nom = $data['nom'];
+        $marque->pays = $data['pays'];
+
+        $marque->save();
+
+        return redirect()->route('marque.index');
     }
 
     /**

@@ -23,6 +23,15 @@
         </div>
 
         <div>
+            <label for="produit">Produit</label>
+            <select name="produit_id" id="produit_id">
+                @foreach ($produits as $produit)
+                    <option value="{{ $produit->id }}">{{ $produit->nom }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div>
             <input type="submit" value="Valider" class="btn btn-success">
         </div>
 

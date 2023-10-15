@@ -9,7 +9,7 @@ class Marque extends Model
 {
     use HasFactory;
 
-    public function produit() {
-        return $this->belongsTo(Produit::class);
+    public function produits() {
+        return $this->hasMany(Produit::class);
     }
 }

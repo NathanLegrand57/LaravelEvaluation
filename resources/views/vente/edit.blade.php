@@ -26,6 +26,20 @@
         </div>
 
         <div>
+            <label for="produit">Marque</label>
+            <select name="produit_id" id="produit_id">
+                @foreach ($produits as $produit)
+                    <option value="{{ $produit->id }}"{{ $vente->produit_id == $produit->id ? 'selected' : '' }}>
+                        {{ $produit->nom }}
+                    </option>
+                @endforeach
+            </select>
+            @error('produit')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
             <input type="submit" value="Valider" class="btn btn-success">
         </div>
 

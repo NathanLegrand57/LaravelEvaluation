@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Produit;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,8 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('produits', function (Blueprint $table) {
-            // $table->foreignIdFor(Marque::class, 'marque_id');
+        Schema::table('ventes', function (Blueprint $table) {
+            $table->foreignIdFor(Produit::class, 'produit_id');
         });
     }
 
@@ -21,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('produits', function (Blueprint $table) {
+        Schema::table('ventes', function (Blueprint $table) {
             //
         });
     }

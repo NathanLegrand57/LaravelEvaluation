@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vente;
+use App\Models\Produit;
 use Illuminate\Http\Request;
 
 class VenteController extends Controller
@@ -21,7 +22,9 @@ class VenteController extends Controller
      */
     public function create()
     {
-        return view('vente.create');
+        $produits = Produit::all();
+
+        return view('vente.create', compact('produits'));
     }
 
     /**
@@ -35,6 +38,7 @@ class VenteController extends Controller
 
         $vente->produit = $data['produit'];
         $vente->quantite = $data['quantite'];
+        $vente->produit_id = $data['produit_id'];
 
         $vente->save();
 
@@ -54,9 +58,9 @@ class VenteController extends Controller
      */
     public function edit(Vente $vente)
     {
-        $marques = Vente::all();
+        $produits = Produit::all();
 
-        return view('vente.edit', compact('vente'));
+        return view('vente.edit', compact('vente', 'produits'));
     }
 
     /**
@@ -68,6 +72,7 @@ class VenteController extends Controller
 
         $vente->produit = $data['produit'];
         $vente->quantite = $data['quantite'];
+        $vente->produit_id = $data['produit_id'];
 
         $vente->save();
 

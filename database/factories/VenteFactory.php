@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Produit;
 use App\Models\Vente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,10 +20,9 @@ class VenteFactory extends Factory
     public function definition(): array
     {
         return [
-            'date' => $this->faker->date(),
-            'heure' => $this->faker->time(),
             'produit' => $this->faker->word(),
-            'quantite' => $this->faker->numberBetween(0, 10),
+            'quantite' => 5,
+            'produit_id' => Produit::factory()->create()
         ];
     }
 }

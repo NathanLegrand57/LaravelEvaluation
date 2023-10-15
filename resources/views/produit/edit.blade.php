@@ -16,32 +16,37 @@
         </div>
 
         <div>
-            <label for="reference">Prix</label>
-            <input type="number" name="reference" id="prix" value="{{ old('prix', $produit->prix) }}" required
+            <label for="prix">Prix</label>
+            <input type="number" name="prix" id="prix" value="{{ old('prix', $produit->prix) }}" required
                 maxlength="20">
             @error('prix')
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
 
+
+        <div>
+            <label for="reference">Reference</label>
+            <input type="number" name="reference" id="reference" value="{{ old('reference', $produit->reference) }}"
+            required maxlength="10">
+            @error('reference')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+
         <div>
             <label for="marque">Marque</label>
-            <input type="texte" name="marque" id="marque" value="{{ old('marque', $produit->marque) }}" required
-                maxlength="75">
+            <select name="marque_id" id="marque_id">
+                @foreach ($marques as $marque)
+                    <option value="{{ $marque->id }}"{{ $produit->marque_id == $marque->id ? 'selected' : '' }}>
+                        {{ $marque->nom }}
+                    </option>
+                @endforeach
+            </select>
             @error('marque')
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
-
-        <div>
-            <label for="reference">Reference</label>
-            <input type="number" name="reference" id="reference" value="{{ old('reference', $produit->reference) }}" required
-                maxlength="10">
-            @error('reference')
-                <p class="text-danger">{{ $message }}</p>
-            @enderror
-        </div>
-
         <div>
             <input type="submit" value="Valider" class="btn btn-success">
         </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Marque;
 use App\Models\Produit;
 use App\Models\Vente;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,8 +24,7 @@ class ProduitFactory extends Factory
             'nom' => $this->faker->name(1),
             'reference' => $this->faker->numberBetween(0, 20000),
             'prix' => $this->faker->randomNumber(2),
-            'marque' => $this->faker->name(1),
-            'vente_id' => Vente::factory()->create()
+            'marque_id' => Marque::factory()->create()
         ];
     }
 }

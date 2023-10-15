@@ -22,9 +22,6 @@ class MarqueFactory extends Factory
         return [
             'nom' => $this->faker->name(1),
             'pays' => $this->faker->name(2),
-            'produit_id' => Produit::factory()->create()
-
-
         ];
     }
 }

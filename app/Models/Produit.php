@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Produit extends Model
 {
     use HasFactory;
-    public function vente() {
-        return $this->belongsTo(Vente::class);
+    public function ventes() {
+        return $this->hasMany(Vente::class); // C'est la classe produit qui ira dans vente en tant que produit_id
     }
 
-    public function marques() {
-        return $this->hasMany(Marque::class);
+    public function marque() {
+        return $this->belongsTo(Marque::class);
     }
 }

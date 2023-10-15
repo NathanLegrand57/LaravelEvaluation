@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marque;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,9 @@ class ProduitController extends Controller
      */
     public function create()
     {
-        return view('produit.create');
+        $marques = Marque::all();
+
+        return view('produit.create', compact('marques'));
     }
 
     /**
@@ -34,9 +37,9 @@ class ProduitController extends Controller
         $produit = new Produit();
 
         $produit->nom = $data['nom'];
-        $produit->pays = $data['prix'];
-        $produit->marque = $data['marque'];
+        $produit->prix = $data['prix'];
         $produit->reference = $data['reference'];
+        $produit->marque_id = $data['marque_id'];
 
         $produit->save();
 
@@ -56,9 +59,9 @@ class ProduitController extends Controller
      */
     public function edit(Produit $produit)
     {
-        $marques = Produit::all();
+        $marques = Marque::all();
 
-        return view('produit.edit', compact('produit'));
+        return view('produit.edit', compact('produit', 'marques'));
     }
 
     /**
@@ -69,9 +72,9 @@ class ProduitController extends Controller
         $data = $request->all();
 
         $produit->nom = $data['nom'];
-        $produit->pays = $data['prix'];
-        $produit->marque = $data['marque'];
+        $produit->prix = $data['prix'];
         $produit->reference = $data['reference'];
+        $produit->marque_id = $data['marque_id'];
 
         $produit->save();
 

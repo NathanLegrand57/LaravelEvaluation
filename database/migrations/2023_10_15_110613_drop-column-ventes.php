@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('produits', function (Blueprint $table) {
-            // $table->foreignIdFor(Marque::class, 'marque_id');
+        Schema::table('ventes', function (Blueprint $table) {
+            $table->dropColumn('date');
+            $table->dropColumn('heure');
         });
     }
 
@@ -21,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('produits', function (Blueprint $table) {
+        Schema::table('ventes', function (Blueprint $table) {
             //
         });
     }

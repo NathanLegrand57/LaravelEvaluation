@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Liste des marques</h2>
-    <a href="{{ route('marque.create') }}" class="btn btn-primary mb-3">Ajouter</a>
+    <h2 class="ms-3 mt-2">Liste des marques</h2>
+    <a href="{{ route('marque.create') }}" class="btn btn-success ms-3 mt-2">Ajouter</a>
     @forelse ($marques as $marque)
-        <div class="card mb-3">
+        <div class="card m-3">
             <div class="card-body">
                 <h5 class="card-title">{{ $marque->nom }}</h5>
                 <div class="btn-toolbar">
                     <div class="btn-group">
-
                     </div>
-                    <a href="{{ route('marque.edit', ['marque' => $marque->id]) }}" class="btn btn-sm btn-warning m-1">Modifier</a>
+                    <a href="{{ route('marque.edit', ['marque' => $marque->id]) }}"
+                        class="btn btn-sm btn-warning m-1">Modifier</a>
                     <form method="POST" action="{{ route('marque.destroy', ['marque' => $marque->id]) }}">
                         @csrf
                         @method('DELETE')

@@ -28,16 +28,22 @@
         <!-- Page Heading -->
         @if (isset($header))
             {{-- <header class="bg-white shadow"> --}}
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
             {{-- </header> --}}
         @endif
 
         <!-- Page Content -->
-        <a class="btn btn-primary ms-3 mt-3" href="{{ route('vente.index') }}">Liste des ventes</a>
-        <a class="btn btn-primary ms-3 mt-3" href="{{ route('produit.index') }}">Liste des produits</a>
-        <a class="btn btn-primary ms-3 mt-3" href="{{ route('marque.index') }}">Liste des marques</a>
+        <a class="btn btn-primary ms-3 mt-3" href="{{ route('vente.index') }}">{{ __('Listes des ventes') }}</a>
+        <a class="btn btn-primary ms-3 mt-3" href="{{ route('produit.index') }}">{{ __('Listes des produits') }}</a>
+        <a class="btn btn-primary ms-3 mt-3" href="{{ route('marque.index') }}">{{ __('Listes des marques') }}</a>
+        <div>
+            <p class="m-3">{{ __('Vous naviguez en') }} [{{ App::getLocale() }}]
+                <a href="{{ route('language.change', ['code_iso' => 'fr']) }}">{{ __('French') }}</a>
+                <a href="{{ route('language.change', ['code_iso' => 'en']) }}">{{ __('English') }}</a>
+            </p>
+        </div>
         @yield('content')
 
     </div>

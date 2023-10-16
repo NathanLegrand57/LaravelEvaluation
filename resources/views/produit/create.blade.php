@@ -24,14 +24,6 @@
             </div>
 
             <div class="form-group">
-                <label for="marque">Marque</label>
-                <input type="text" class="form-control" name="marque" id="marque" value="{{ old('marque') }}" required maxlength="75">
-                @error('marque')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="form-group">
                 <label for="marque_id">Marque</label>
                 <select class="form-control" name="marque_id" id="marque_id">
                     @foreach ($marques as $marque)

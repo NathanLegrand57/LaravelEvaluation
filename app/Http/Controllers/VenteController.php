@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\VenteRepository;
 use App\Models\Vente;
 use App\Models\Produit;
 use Illuminate\Http\Request;
@@ -11,10 +12,16 @@ class VenteController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $venteRepository;
+    public function __construct(VenteRepository $venteRepository)
+    {
+        $this->venteRepository = $venteRepository;
+        // $this->middleware('auth')->except(['index', 'show']);
+    }
     public function index()
     {
         $ventes = Vente::all();
-        return view('vente.index', compact('ventes' ));
+        return view('vente.index', compact('ventes'));
     }
 
     /**
@@ -32,15 +39,7 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $vente = new Vente();
-
-        $vente->quantite = $data['quantite'];
-        $vente->produit_id = $data['produit_id'];
-
-        $vente->save();
-
+        $this->venteRepository->store($request);
         return redirect()->route('vente.index');
     }
 
@@ -67,13 +66,7 @@ class VenteController extends Controller
      */
     public function update(Request $request, Vente $vente)
     {
-        $data = $request->all();
-
-        $vente->quantite = $data['quantite'];
-        $vente->produit_id = $data['produit_id'];
-
-        $vente->save();
-
+        $this->venteRepository->update($request, $vente);
         return redirect()->route('vente.index');
     }
 
@@ -82,7 +75,7 @@ class VenteController extends Controller
      */
     public function destroy(Vente $vente)
     {
-        $vente -> delete();
+        $vente->delete();
         return redirect()->route("vente.index");
     }
 }

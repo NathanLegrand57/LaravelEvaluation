@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\ProduitRepository;
 use App\Models\Marque;
 use App\Models\Produit;
 use Illuminate\Http\Request;
@@ -11,6 +12,12 @@ class ProduitController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $produitRepository;
+    public function __construct(ProduitRepository $produitRepository)
+    {
+        $this->produitRepository = $produitRepository;
+        // $this->middleware('auth')->except(['index', 'show']);
+    }
     public function index()
     {
         $produits = Produit::all();
@@ -32,17 +39,7 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $produit = new Produit();
-
-        $produit->nom = $data['nom'];
-        $produit->prix = $data['prix'];
-        $produit->reference = $data['reference'];
-        $produit->marque_id = $data['marque_id'];
-
-        $produit->save();
-
+        $this->produitRepository->store($request);
         return redirect()->route('produit.index');
     }
 
@@ -69,15 +66,7 @@ class ProduitController extends Controller
      */
     public function update(Request $request, Produit $produit)
     {
-        $data = $request->all();
-
-        $produit->nom = $data['nom'];
-        $produit->prix = $data['prix'];
-        $produit->reference = $data['reference'];
-        $produit->marque_id = $data['marque_id'];
-
-        $produit->save();
-
+        $this->produitRepository->update($request, $produit);
         return redirect()->route('produit.index');
     }
 

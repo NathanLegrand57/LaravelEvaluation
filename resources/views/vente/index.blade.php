@@ -7,7 +7,7 @@
     @forelse ($ventes as $vente)
         <div class="card m-3">
             <div class="card-body">
-                <h5 class="card-title">Nom du produit : {{ $vente->produit->nom }}   |   Date et heure de vente : {{ $vente->created_at }}   |   Prix total : {{($vente->quantite)*($vente->produit->prix)}} €</h5>
+                <h5 class="card-title">Nom du produit : {{ $vente->produit->nom }}   |   Quantité : {{$vente->quantite}}   |   Prix total : {{($vente->quantite)*($vente->produit->prix)}} €   |   Date et heure de vente : {{ $vente->created_at }}</h5>
                 <div class="btn-toolbar">
                     <a href="{{ route('vente.edit', ['vente' => $vente->id]) }}"
                         class="btn btn-sm btn-warning m-1">Modifier</a>

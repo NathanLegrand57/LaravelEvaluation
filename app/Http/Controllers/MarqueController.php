@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\MarqueRepository;
 use App\Models\Marque;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,12 @@ class MarqueController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $marqueRepository;
+    public function __construct(MarqueRepository $marqueRepository)
+    {
+        $this->marqueRepository = $marqueRepository;
+        // $this->middleware('auth')->except(['index', 'show']);
+    }
     public function index()
     {
         $marques = Marque::all();
@@ -29,15 +36,7 @@ class MarqueController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $marque = new Marque();
-
-        $marque->nom = $data['nom'];
-        $marque->pays = $data['pays'];
-
-        $marque->save();
-
+        $this->marqueRepository->store($request);
         return redirect()->route('marque.index');
     }
 
@@ -64,13 +63,8 @@ class MarqueController extends Controller
      */
     public function update(Request $request, Marque $marque)
     {
-        $data = $request->all();
 
-        $marque->nom = $data['nom'];
-        $marque->pays = $data['pays'];
-
-        $marque->save();
-
+        $this->marqueRepository->update($request, $marque);
         return redirect()->route('marque.index');
     }
 

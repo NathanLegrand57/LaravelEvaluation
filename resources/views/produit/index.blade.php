@@ -6,7 +6,7 @@
     @forelse ($produits as $produit)
         <div class="card m-3">
             <div class="card-body">
-                <h5 class="card-title">{{ $produit->nom }}</h5>
+                <h5 class="card-title">Nom du produit : {{ $produit->nom }}   |   Prix à l'unité : {{ $produit->prix}} €</h5>
                 <div class="btn-toolbar">
                     <a href="{{ route('produit.edit', ['produit' => $produit->id]) }}"
                         class="btn btn-sm btn-warning m-1">Modifier</a>

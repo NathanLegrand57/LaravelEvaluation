@@ -14,7 +14,7 @@ class VenteController extends Controller
     public function index()
     {
         $ventes = Vente::all();
-        return view('vente.index', compact('ventes'));
+        return view('vente.index', compact('ventes' ));
     }
 
     /**
@@ -36,7 +36,6 @@ class VenteController extends Controller
 
         $vente = new Vente();
 
-        $vente->produit = $data['produit'];
         $vente->quantite = $data['quantite'];
         $vente->produit_id = $data['produit_id'];
 
@@ -70,7 +69,6 @@ class VenteController extends Controller
     {
         $data = $request->all();
 
-        $vente->produit = $data['produit'];
         $vente->quantite = $data['quantite'];
         $vente->produit_id = $data['produit_id'];
 

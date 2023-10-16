@@ -8,14 +8,6 @@
             @csrf
 
             <div class="form-group">
-                <label for="produit">Produit</label>
-                <input type="text" class="form-control" name="produit" id="produit" value="{{ old('produit') }}" required maxlength="75">
-                @error('produit')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="form-group">
                 <label for="quantite">Quantité</label>
                 <input type="number" class="form-control" name="quantite" id="quantite" value="{{ old('quantite') }}" required maxlength="100">
                 @error('quantite')

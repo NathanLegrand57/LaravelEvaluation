@@ -20,7 +20,6 @@ class VenteFactory extends Factory
     public function definition(): array
     {
         return [
-            'produit' => $this->faker->word(),
             'quantite' => 5,
             'produit_id' => Produit::factory()->create()
         ];

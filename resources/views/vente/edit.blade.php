@@ -9,14 +9,6 @@
             @method('put')
 
             <div class="form-group">
-                <label for="produit">Produit</label>
-                <input type="text" class="form-control" name="produit" id="produit" value="{{ old('produit', $vente->produit) }}" required maxlength="75">
-                @error('produit')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="form-group">
                 <label for="quantite">Quantité</label>
                 <input type="number" class="form-control" name="quantite" id="quantite" value="{{ old('quantite', $vente->quantite) }}" required maxlength="100">
                 @error('quantite')
@@ -25,7 +17,7 @@
             </div>
 
             <div class="form-group">
-                <label for="produit_id">Marque</label>
+                <label for="produit_id">Produit</label>
                 <select class="form-control" name="produit_id" id="produit_id">
                     @foreach ($produits as $produit)
                         <option value="{{ $produit->id }}"{{ $vente->produit_id == $produit->id ? 'selected' : '' }}>

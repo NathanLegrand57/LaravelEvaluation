@@ -84,6 +84,7 @@ class VenteController extends Controller
      */
     public function destroy(Vente $vente)
     {
-        //
+        $vente -> delete();
+        return redirect()->route("vente.index");
     }
 }

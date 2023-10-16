@@ -79,6 +79,7 @@ class MarqueController extends Controller
      */
     public function destroy(Marque $marque)
     {
-        //
+        $marque -> delete();
+        return redirect()->route("marque.index");
     }
 }

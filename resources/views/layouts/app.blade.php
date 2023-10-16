@@ -14,13 +14,29 @@
 </head>
 
 <body>
-    <div class="container">
-        <nav class="pb-5">
-            <a href="{{ route('vente.index') }}" class="btn btn-primary">Liste des ventes</a>
-            <a href="{{ route('produit.index') }}" class="btn btn-primary">Liste des produits</a>
-            <a href="{{ route('marque.index') }}" class="btn btn-primary">Liste des marques</a>
-        </nav>
-    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ route('vente.index') }}">Boutique</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('vente.index') }}">Liste des ventes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('produit.index') }}">Liste des produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('marque.index') }}">Liste des marques</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     @yield('content')
 
 </body>

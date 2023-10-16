@@ -20,6 +20,6 @@
             </div>
         </div>
     @empty
-        <p>Aucune vente connue</p>
+        <p class="ms-3">Aucune vente connue</p>
     @endforelse
 @endsection

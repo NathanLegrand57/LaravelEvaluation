@@ -13,8 +13,9 @@ return new class extends Migration {
     {
         Schema::create('marques', function (Blueprint $table) {
             $table->id();
-            $table->string('marque');
-            $table->foreignIdFor(Produit::class, 'produit_id');
+            $table->string('nom');
+            $table->string('pays');
+            $table->timestamps();
         });
     }
 

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('ventes', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->time('heure');
             $table->string('produit');
-            $table->integer('quantité');
+            $table->integer('quantite');
+            $table->timestamps();
+            $table->foreignIdFor(Produit::class, 'produit_id');
         });
     }
 

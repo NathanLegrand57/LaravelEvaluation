@@ -21,8 +21,8 @@
             </div>
         </div>
     @empty
-        <li>
+        <p class="ms-3">
             Aucune marque connue
-        </li>
+        </p>
     @endforelse
 @endsection

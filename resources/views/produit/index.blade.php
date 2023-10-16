@@ -19,8 +19,8 @@
             </div>
         </div>
     @empty
-        <li>
+        <p class="ms-3">
             Aucun produit connu
-        </li>
+        </p>
     @endforelse
 @endsection

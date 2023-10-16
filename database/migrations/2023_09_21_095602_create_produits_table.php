@@ -15,7 +15,9 @@ return new class extends Migration {
             $table->id();
             $table->string('nom', 75);
             $table->float('prix');
-            $table->string('marque', 75);
+            $table->string('reference', 10);
+            $table->timestamps();
+            $table->foreignIdFor(Marque::class, 'marque_id');
         });
     }
 

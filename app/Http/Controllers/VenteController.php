@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\VenteRepository;
+use App\Http\Requests\VenteRequest;
 use App\Models\Vente;
 use App\Models\Produit;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class VenteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VenteRequest $request)
     {
         $this->venteRepository->store($request);
         return redirect()->route('vente.index');
@@ -64,7 +65,7 @@ class VenteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Vente $vente)
+    public function update(VenteRequest $request, Vente $vente)
     {
         $this->venteRepository->update($request, $vente);
         return redirect()->route('vente.index');

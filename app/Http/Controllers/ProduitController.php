@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\ProduitRepository;
+use App\Http\Requests\ProduitRequest;
 use App\Models\Marque;
 use App\Models\Produit;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class ProduitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProduitRequest $request)
     {
         $this->produitRepository->store($request);
         return redirect()->route('produit.index');
@@ -64,7 +65,7 @@ class ProduitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Produit $produit)
+    public function update(ProduitRequest $request, Produit $produit)
     {
         $this->produitRepository->update($request, $produit);
         return redirect()->route('produit.index');

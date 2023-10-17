@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\MarqueRepository;
+use App\Http\Requests\MarqueRequest;
 use App\Models\Marque;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,7 @@ class MarqueController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MarqueRequest $request)
     {
         $this->marqueRepository->store($request);
         return redirect()->route('marque.index');
@@ -61,7 +62,7 @@ class MarqueController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Marque $marque)
+    public function update(MarqueRequest $request, Marque $marque)
     {
 
         $this->marqueRepository->update($request, $marque);

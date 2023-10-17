@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="ms-3 mt-2">Liste des ventes</h2>
+    <h2 class="ms-3 mt-2">{{ __('Listes des ventes') }}</h2>
     @can('vente-create')
         <a href="{{ route('vente.create') }}" class="btn btn-success ms-3 mt-2">Ajouter</a>
     @endcan

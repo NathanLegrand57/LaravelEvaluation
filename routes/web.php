@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ProduitController;
@@ -18,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [VenteController::class, 'index']);
+// Route::get('/', [VenteController::class, 'index']);
+
+Route::get('/', [AuthenticatedSessionController::class, 'create'])
+                ->name('login');
 
 Route::resource('/vente', VenteController::class);
 Route::resource('/produit', ProduitController::class);

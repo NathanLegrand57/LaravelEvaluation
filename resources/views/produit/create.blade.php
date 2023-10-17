@@ -9,7 +9,8 @@
 
             <div class="form-group">
                 <label for="nom">Nom</label>
-                <input type="text" class="form-control" name="nom" id="nom" value="{{ old('nom') }}" required maxlength="75">
+                <input type="text" class="form-control" name="nom" id="nom" value="{{ old('nom') }}" required
+                    maxlength="75">
                 @error('nom')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -17,8 +18,19 @@
 
             <div class="form-group">
                 <label for="prix">Prix</label>
-                <input type="number" class="form-control" name="prix" id="prix" value="{{ old('prix') }}" required maxlength="20">
+                <input type="number" class="form-control" name="prix" id="prix" value="{{ old('prix') }}"
+                    required maxlength="20">
                 @error('prix')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+            </div>
+
+
+            <div class="form-group">
+                <label for="reference">Référence</label>
+                <input type="text" class="form-control" name="reference" id="reference" value="{{ old('reference') }}"
+                    required maxlength="10">
+                @error('reference')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
@@ -30,14 +42,6 @@
                         <option value="{{ $marque->id }}">{{ $marque->nom }}</option>
                     @endforeach
                 </select>
-            </div>
-
-            <div class="form-group">
-                <label for="reference">Référence</label>
-                <input type="text" class="form-control" name="reference" id="reference" value="{{ old('reference') }}" required maxlength="10">
-                @error('reference')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
             </div>
 
             <div class="form-group">

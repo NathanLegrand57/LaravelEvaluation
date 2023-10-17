@@ -19,14 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', [VenteController::class, 'index']);
-
-Route::get('/', [AuthenticatedSessionController::class, 'create'])
-                ->name('login');
-
-Route::resource('/vente', VenteController::class);
-Route::resource('/produit', ProduitController::class);
-Route::resource('/marque', MarqueController::class);
+Route::get('/', [VenteController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,8 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('/vente', VenteController::class);
+    Route::resource('/produit', ProduitController::class);
+    Route::resource('/marque', MarqueController::class);
 });
 
 Route::get('language/{code_iso}', [LanguageController::class, 'change'])->name('language.change');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -46,7 +46,7 @@ class MarqueController extends Controller
      */
     public function show(Marque $marque)
     {
-        //
+        return view('marque.show', compact('marque'));
     }
 
     /**

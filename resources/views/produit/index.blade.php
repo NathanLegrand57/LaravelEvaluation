@@ -8,8 +8,10 @@
     @forelse ($produits as $produit)
         <div class="card m-3">
             <div class="card-body">
-                <h5 class="card-title">{{ __('Nom du produit') }} : {{ $produit->nom }} | {{ __("Prix à l'unité") }} {{ $produit->prix }} €</h5>
+                <h5 class="card-title">{{ __('Nom du produit') }} : {{ $produit->nom }}</h5>
                 <div class="btn-toolbar">
+                    <a href="{{ route('produit.show', ['produit' => $produit->id]) }}"
+                        class="btn btn-sm btn-primary m-1">{{ __('Détails') }}</a>
                     @can('produit-update')
                         <a href="{{ route('produit.edit', ['produit' => $produit->id]) }}"
                             class="btn btn-sm btn-warning m-1">{{ __('Modifier') }}</a>

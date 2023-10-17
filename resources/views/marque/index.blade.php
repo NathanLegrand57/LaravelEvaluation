@@ -8,10 +8,12 @@
     @forelse ($marques as $marque)
         <div class="card m-3">
             <div class="card-body">
-                <h5 class="card-title">{{ __('Nom de la marque') }} : {{ $marque->nom }}   |   {{ __('Pays') }} : {{$marque->pays}} </h5>
+                <h5 class="card-title">{{ __('Nom de la marque') }} : {{ $marque->nom }}</h5>
                 <div class="btn-toolbar">
                     <div class="btn-group">
                     </div>
+                    <a href="{{ route('marque.show', ['marque' => $marque->id]) }}"
+                        class="btn btn-sm btn-primary m-1">{{ __('Détails') }}</a>
                     @can('marque-update')
                         <a href="{{ route('marque.edit', ['marque' => $marque->id]) }}"
                             class="btn btn-sm btn-warning m-1">{{ __('Modifier') }}</a>

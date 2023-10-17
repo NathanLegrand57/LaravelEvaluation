@@ -49,7 +49,7 @@ class VenteController extends Controller
      */
     public function show(Vente $vente)
     {
-        //
+        return view('vente.show', compact('vente'));
     }
 
     /**

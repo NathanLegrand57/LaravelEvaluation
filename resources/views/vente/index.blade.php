@@ -9,9 +9,10 @@
     @forelse ($ventes as $vente)
         <div class="card m-3">
             <div class="card-body">
-                <h5 class="card-title">{{ __('Nom du produit') }} : {{ $vente->produit->nom }} | {{ __('Quantité') }} : {{ $vente->quantite }} | {{ __('Prix total') }} : {{ $vente->quantite * $vente->produit->prix }} € | {{ __('Date et heure de vente') }} :
-                    {{ $vente->created_at }}</h5>
+                <h5 class="card-title">{{ __('Nom du produit') }} : {{ $vente->produit->nom }}</h5>
                 <div class="btn-toolbar">
+                    <a href="{{ route('vente.show', ['vente' => $vente->id]) }}"
+                        class="btn btn-sm btn-primary m-1">{{ __('Détails') }}</a>
                     @can('vente-update')
                         <a href="{{ route('vente.edit', ['vente' => $vente->id]) }}"
                             class="btn btn-sm btn-warning m-1">{{ __('Modifier') }}</a>

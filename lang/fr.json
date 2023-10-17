@@ -94,5 +94,10 @@
     "Brand list": "Liste des marques",
     "Country": "Pays",
     "Brand create": "Création d'une marque",
-    "Brand name": "Nom de la marque"
+    "Brand name": "Nom de la marque",
+    "Product details":"Détails du produit",
+    "Sale details":"Détails de la vente",
+    "Brand details":"Détails de la marque",
+    "Details": "Détails"
+
 }

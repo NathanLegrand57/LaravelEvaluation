@@ -8,7 +8,7 @@
     @forelse ($marques as $marque)
         <div class="card m-3">
             <div class="card-body">
-                <h5 class="card-title">{{ $marque->nom }}</h5>
+                <h5 class="card-title">{{ __('Nom de la marque') }} : {{ $marque->nom }}   |   {{ __('Pays') }} : {{$marque->pays}} </h5>
                 <div class="btn-toolbar">
                     <div class="btn-group">
                     </div>

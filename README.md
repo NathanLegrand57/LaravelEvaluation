@@ -1,4 +1,4 @@
-[![forthebadge](https://forthebadge.com?primaryBGColor=%234a4a4a&primaryTextColor=%23ffffff&secondaryBGColor=%23389AD5&secondaryTextColor=%23FFFFFF&tertiaryBGColor=%232674A4&tertiaryTextColor=%23FFFFFF&primaryLabel=Fait+avec&secondaryLabel=php&tertiaryLabel=&panels=2#/generator)]
+[![forthebadge](https://forthebadge.com?primaryBGColor=%234a4a4a&primaryTextColor=%23ffffff&secondaryBGColor=%23389AD5&secondaryTextColor=%23FFFFFF&tertiaryBGColor=%232674A4&tertiaryTextColor=%23FFFFFF&primaryLabel=Fait+avec&secondaryLabel=php&tertiaryLabel=&panels=2#/generator)](http://forthebadge.com)
 ## Mettre le dossier boutique dans le dossier Homestead/code 
 
 * Modifier le fichier Homestead.yaml

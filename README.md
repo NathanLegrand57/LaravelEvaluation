@@ -50,7 +50,57 @@
       php artisan db:seed --class=ProduitSeeder
       php artisan db:seed --class=MarqueSeeder
     ```
-  
+
+  ## Création des utilisateurs
+
+### Tinker : 
+
+- Créer le premier utilisateur :
+
+```bash
+artisan tinker
+$user = new App\Model\User;
+$user->name = 'Charles';   <-- _Exemple de nom_
+$user->email = "charles@gmail.com";
+$user->password=bcrypt('123456789');
+$user->save();
+```
+
+- Faire pareil pour le deuxième utilisateur mais changer le nom et l'adresse mail
+
+## Gestion des rôles et habilitations
+
+- Se rendre à l'utilisateur Charles avec les commandes suivantes (ici l'id numéro 1) :
+
+```bash
+$user = User::find(1);
+Bouncer::allow('vendeur')->to('vente-create');
+Bouncer::allow('vendeur')->to('vente-update');
+Bouncer::allow('vendeur')->to('vente-retrieve');
+Bouncer::assign('vendeur')->to($user);
+```
+
+- Faire de même avec l'utilisateur 2 :
+
+```bash
+$user = User::find(2);
+Bouncer::allow('gerant')->to('vente-create');
+Bouncer::allow('gerant')->to('vente-update');
+Bouncer::allow('gerant')->to('vente-retrieve');
+Bouncer::allow('gerant')->to('produit-create');
+Bouncer::allow('gerant')->to('produit-update');
+Bouncer::allow('gerant')->to('produit-retrieve');
+Bouncer::allow('gerant')->to('marque-create');
+Bouncer::allow('gerant')->to('marque-update');
+Bouncer::allow('gerant')->to('marque-retrieve');
+Bouncer::assign('gerant')->to($user);
+```
+
+- Sauvegarder le tout :
+
+```bash
+Bouncer::refresh()
+```
 
  
     

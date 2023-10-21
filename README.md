@@ -9,8 +9,8 @@
 - Ajouter dans ``sites`` :
 
     ```
-  -map: boutique.test
-  to: /home/vagrant/code/boutique/public
+  - map: boutique.test
+    to: /home/vagrant/code/boutique/public
     ```
 
 - Ajouter dans ``databases`` :

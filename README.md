@@ -41,6 +41,8 @@
       composer install
     ```
 
+### Alimentation de la base de données
+
  - Exécuter ces commandes pour alimenter la base de données : 
 
     ```bash

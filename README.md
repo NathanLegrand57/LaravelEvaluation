@@ -4,7 +4,7 @@
 
 ### Mise en place du projet
 
-- Mettre le dossier boutique dans le dossier ``Homestead/code`` 
+- Mettre le dossier ``boutique`` dans le dossier ``Homestead/code`` 
 - Modifier le fichier ``Homestead.yaml``
 - Ajouter dans ``sites`` :
 

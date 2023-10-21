@@ -57,14 +57,14 @@
 
 - Créer le premier utilisateur :
 
-```bash
-artisan tinker
-$user = new App\Model\User;
-$user->name = 'Charles';   <-- _Exemple de nom_
-$user->email = "charles@gmail.com";
-$user->password=bcrypt('123456789');
-$user->save();
-```
+    ```bash
+        artisan tinker
+        $user = new App\Model\User;
+        $user->name = 'Charles';   <-- _Exemple de nom_
+        $user->email = "charles@gmail.com";
+        $user->password=bcrypt('123456789');
+        $user->save();
+    ```
 
 - Faire pareil pour le deuxième utilisateur mais changer le nom et l'adresse mail
 

@@ -9,8 +9,8 @@
 - Ajouter dans ``sites`` :
 
     ```php
-  - map: boutique.test
-    to: /home/vagrant/code/boutique/public
+      - map: boutique.test
+        to: /home/vagrant/code/boutique/public
     ```
 
 - Ajouter dans ``databases`` :
@@ -24,12 +24,12 @@
 - Modifier le fichier ``.env`` en changeant les lignes suivantes : 
 
     ```bash
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=boutique
-    DB_USERNAME=root
-    DB_PASSWORD=secret
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=boutique
+        DB_USERNAME=root
+        DB_PASSWORD=secret
     ```
 
 - Exécuter le cmd Windows, puis aller dans le dossier ``Homestead/`` 
@@ -72,35 +72,35 @@
 
 - Se rendre à l'utilisateur Charles avec les commandes suivantes (ici l'id numéro 1) :
 
-```bash
-$user = User::find(1);
-Bouncer::allow('vendeur')->to('vente-create');
-Bouncer::allow('vendeur')->to('vente-update');
-Bouncer::allow('vendeur')->to('vente-retrieve');
-Bouncer::assign('vendeur')->to($user);
-```
+    ```bash
+        $user = User::find(1);
+        Bouncer::allow('vendeur')->to('vente-create');
+        Bouncer::allow('vendeur')->to('vente-update');
+        Bouncer::allow('vendeur')->to('vente-retrieve');
+        Bouncer::assign('vendeur')->to($user);
+    ```
 
 - Faire de même avec l'utilisateur 2 :
 
-```bash
-$user = User::find(2);
-Bouncer::allow('gerant')->to('vente-create');
-Bouncer::allow('gerant')->to('vente-update');
-Bouncer::allow('gerant')->to('vente-retrieve');
-Bouncer::allow('gerant')->to('produit-create');
-Bouncer::allow('gerant')->to('produit-update');
-Bouncer::allow('gerant')->to('produit-retrieve');
-Bouncer::allow('gerant')->to('marque-create');
-Bouncer::allow('gerant')->to('marque-update');
-Bouncer::allow('gerant')->to('marque-retrieve');
-Bouncer::assign('gerant')->to($user);
-```
+    ```bash
+        $user = User::find(2);
+        Bouncer::allow('gerant')->to('vente-create');
+        Bouncer::allow('gerant')->to('vente-update');
+        Bouncer::allow('gerant')->to('vente-retrieve');
+        Bouncer::allow('gerant')->to('produit-create');
+        Bouncer::allow('gerant')->to('produit-update');
+        Bouncer::allow('gerant')->to('produit-retrieve');
+        Bouncer::allow('gerant')->to('marque-create');
+        Bouncer::allow('gerant')->to('marque-update');
+        Bouncer::allow('gerant')->to('marque-retrieve');
+        Bouncer::assign('gerant')->to($user);
+    ```
 
 - Sauvegarder le tout :
-
-```bash
-Bouncer::refresh()
-```
+    
+    ```bash
+        Bouncer::refresh()
+    ```
 
  
     

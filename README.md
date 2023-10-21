@@ -8,10 +8,12 @@
 - Modifier le fichier ``Homestead.yaml``
 - Ajouter dans ``sites`` :
 
-``
+    ``
   -map: boutique.test
+    ``
+    ``
   to: /home/vagrant/code/boutique/public
-``
+    ``
 
 - Ajouter dans ``databases`` :
 ``- boutique``

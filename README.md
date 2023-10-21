@@ -10,8 +10,6 @@
 
     ``
   -map: boutique.test
-    ``
-    ``
   to: /home/vagrant/code/boutique/public
     ``
 

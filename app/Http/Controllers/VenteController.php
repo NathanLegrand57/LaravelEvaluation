@@ -7,6 +7,7 @@ use App\Http\Requests\VenteRequest;
 use App\Models\Vente;
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VenteController extends Controller
 {
@@ -32,7 +33,12 @@ class VenteController extends Controller
     {
         $produits = Produit::all();
 
-        return view('vente.create', compact('produits'));
+        if (Auth::user()->can('vente-update')) {
+            return view('vente.create', compact('produits'));
+
+        }
+
+        abort(401);
     }
 
     /**
@@ -59,7 +65,12 @@ class VenteController extends Controller
     {
         $produits = Produit::all();
 
-        return view('vente.edit', compact('vente', 'produits'));
+        if (Auth::user()->can('vente-update')) {
+            return view('vente.edit', compact('vente', 'produits'));
+        }
+
+        abort(401);
+
     }
 
     /**

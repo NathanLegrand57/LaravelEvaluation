@@ -6,6 +6,7 @@ use App\Http\Repositories\MarqueRepository;
 use App\Http\Requests\MarqueRequest;
 use App\Models\Marque;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MarqueController extends Controller
 {
@@ -29,7 +30,11 @@ class MarqueController extends Controller
      */
     public function create()
     {
-        return view('marque.create');
+        if (Auth::user()->can('marque-update')) {
+            return view('marque.create');
+        }
+
+        abort(401);
     }
 
     /**
@@ -55,8 +60,11 @@ class MarqueController extends Controller
     public function edit(Marque $marque)
     {
         $marques = Marque::all();
+        if (Auth::user()->can('marque-update')) {
+            return view('marque.edit', compact('marque'));
+        }
 
-        return view('marque.edit', compact('marque'));
+        abort(401);
     }
 
     /**

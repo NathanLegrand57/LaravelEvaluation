@@ -7,6 +7,7 @@ use App\Http\Requests\ProduitRequest;
 use App\Models\Marque;
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProduitController extends Controller
 {
@@ -32,7 +33,11 @@ class ProduitController extends Controller
     {
         $marques = Marque::all();
 
-        return view('produit.create', compact('marques'));
+        if (Auth::user()->can('produit-create')) {
+            return view('produit.create', compact('marques'));
+        }
+
+        abort(401);
     }
 
     /**
@@ -59,7 +64,11 @@ class ProduitController extends Controller
     {
         $marques = Marque::all();
 
-        return view('produit.edit', compact('produit', 'marques'));
+        if (Auth::user()->can('produit-update')) {
+            return view('produit.edit', compact('produit', 'marques'));
+        }
+
+        abort(401);
     }
 
     /**

@@ -14,7 +14,7 @@
     ```
 
 - Ajouter dans ``databases`` :
-``- boutique``
+```- boutique```
 
 ### Paramétrage de la base de données
 

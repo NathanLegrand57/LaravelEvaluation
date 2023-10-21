@@ -102,6 +102,8 @@
     ```bash
         Bouncer::refresh()
     ```
+- Aller sur le site ``boutique.test`` sur votre navigateur
+
 
  
     

@@ -70,6 +70,7 @@
 
 ## Gestion des rôles et habilitations
 
+### Bouncer
 - Se rendre à l'utilisateur Charles avec les commandes suivantes (ici l'id numéro 1) :
 
     ```bash

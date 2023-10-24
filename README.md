@@ -102,7 +102,7 @@
     ```bash
         Bouncer::refresh()
     ```
-- Aller sur le site ``boutique.test`` sur votre navigateur
+- Aller sur le site ``boutique.test`` sur votre navigateur et se connecter avec les identifiants créés précédemment
 
 
  

@@ -9,19 +9,11 @@
             @method('put')
 
             <div class="form-group">
-                <label for="nom">{{ __('Nom') }}</label>
-                <input type="text" class="form-control" name="nom" id="nom" value="{{ old('nom', $marque->nom) }}" required maxlength="75">
-                @error('nom')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
+                <x-input-text property="nom" maxlength="75" label="{{ __('Nom') }}" />
             </div>
 
             <div class="form-group">
-                <label for="pays">{{ __('Pays') }}</label>
-                <input type="text" class="form-control" name="pays" id="pays" value="{{ old('pays', $marque->pays) }}" required maxlength="75">
-                @error('pays')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
+                <x-input-text property="pays" maxlength="75" label="{{ __('Pays') }}" />
             </div>
 
             <div class="form-group">

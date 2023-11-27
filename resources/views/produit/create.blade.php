@@ -8,31 +8,16 @@
             @csrf
 
             <div class="form-group">
-                <label for="nom">{{ __('Nom') }}</label>
-                <input type="text" class="form-control" name="nom" id="nom" value="{{ old('nom') }}" required
-                    maxlength="75">
-                @error('nom')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
+                <x-input-text property="nom" maxlength="75" label="{{ __('Nom') }}" />
             </div>
 
             <div class="form-group">
-                <label for="prix">{{ __('Prix') }}</label>
-                <input type="number" class="form-control" name="prix" id="prix" value="{{ old('prix') }}"
-                    required maxlength="20">
-                @error('prix')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
+                <x-input-number property="prix" maxlength="20" label="{{ __('Prix') }}" />
             </div>
 
 
             <div class="form-group">
-                <label for="reference">{{ __('Référence') }}</label>
-                <input type="text" class="form-control" name="reference" id="reference" value="{{ old('reference') }}"
-                    required maxlength="10">
-                @error('reference')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
+                <x-input-text property="reference" maxlength="10" label="{{ __('Reference') }}" />
             </div>
 
             <div class="form-group">

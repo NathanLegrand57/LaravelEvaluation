@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Vente;
+use App\Models\Produit;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,16 +10,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class InfoMail extends Mailable
+class InfoProduit extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(Vente $vente)
+    public function __construct(Produit $produit)
     {
-        $this->vente = $vente;
+        $this->produit = $produit;
     }
 
     /**
@@ -28,7 +28,7 @@ class InfoMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Mise à jour des infos',
+            subject: 'Info Produit',
         );
     }
 
@@ -38,7 +38,7 @@ class InfoMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.info',
+            view: 'mail.produit',
         );
     }
 

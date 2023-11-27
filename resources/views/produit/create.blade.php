@@ -27,6 +27,7 @@
                         <option value="{{ $marque->id }}">{{ $marque->nom }}</option>
                     @endforeach
                 </select>
+                {{-- <x-select-list property="produit_id" label="{{ __('Produit') }}" /> --}}
             </div>
 
             <div class="form-group">

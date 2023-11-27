@@ -9,11 +9,7 @@
             @method('put')
 
             <div class="form-group">
-                <label for="quantite">{{ __('Quantité') }}</label>
-                <input type="number" class="form-control" name="quantite" id="quantite" value="{{ old('quantite', $vente->quantite) }}" required maxlength="100">
-                @error('quantite')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
+                <x-input-number property="quantite" maxlength="100" label="{{ __('Quantité') }}" />
             </div>
 
             <div class="form-group">

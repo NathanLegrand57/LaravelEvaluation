@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\ProduitRepository;
 use App\Http\Requests\ProduitRequest;
+use App\Mail\InfoMail;
+use App\Mail\InfoProduit;
 use App\Models\Marque;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ProduitController extends Controller
 {
@@ -43,9 +46,12 @@ class ProduitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProduitRequest $request)
+    public function store(ProduitRequest $request, Produit $produit)
     {
         $this->produitRepository->store($request);
+
+        Mail::to(Auth::user()->email)->send(new InfoProduit($produit));
+
         return redirect()->route('produit.index');
     }
 
@@ -77,6 +83,9 @@ class ProduitController extends Controller
     public function update(ProduitRequest $request, Produit $produit)
     {
         $this->produitRepository->update($request, $produit);
+
+        Mail::to(Auth::user()->email)->send(new InfoProduit($produit));
+
         return redirect()->route('produit.index');
     }
 

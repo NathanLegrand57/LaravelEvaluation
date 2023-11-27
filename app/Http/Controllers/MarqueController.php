@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\MarqueRepository;
 use App\Http\Requests\MarqueRequest;
+use App\Mail\InfoMarque;
 use App\Models\Marque;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MarqueController extends Controller
 {
@@ -40,9 +42,12 @@ class MarqueController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(MarqueRequest $request)
+    public function store(MarqueRequest $request, Marque $marque)
     {
         $this->marqueRepository->store($request);
+
+        Mail::to(Auth::user()->email)->send(new InfoMarque($marque));
+
         return redirect()->route('marque.index');
     }
 
@@ -74,6 +79,9 @@ class MarqueController extends Controller
     {
 
         $this->marqueRepository->update($request, $marque);
+
+        Mail::to(Auth::user()->email)->send(new InfoMarque($marque));
+
         return redirect()->route('marque.index');
     }
 

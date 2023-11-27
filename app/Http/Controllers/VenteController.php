@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\VenteRepository;
 use App\Http\Requests\VenteRequest;
-use App\Mail\InfoMail;
+use App\Mail\InfoVente;
 use App\Models\Vente;
 use App\Models\Produit;
 use Illuminate\Http\Request;
@@ -46,9 +46,11 @@ class VenteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(VenteRequest $request)
+    public function store(VenteRequest $request, Vente $vente)
     {
         $this->venteRepository->store($request);
+
+        Mail::to(Auth::user()->email)->send(new InfoVente($vente));
 
         return redirect()->route('vente.index');
     }
@@ -83,7 +85,7 @@ class VenteController extends Controller
     {
         $this->venteRepository->update($request, $vente);
 
-        Mail::to(Auth::user()->email)->send(new InfoMail($vente));
+        Mail::to(Auth::user()->email)->send(new InfoVente($vente));
         return redirect()->route('vente.index');
     }
 

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\MarqueRepository;
 use App\Http\Requests\MarqueRequest;
-use App\Mail\InfoMarque;
+use App\Mail\CreateMarque;
+use App\Mail\UpdateMarque;
 use App\Models\Marque;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,13 @@ class MarqueController extends Controller
     {
         $this->marqueRepository->store($request);
 
-        Mail::to(Auth::user()->email)->send(new InfoMarque($marque));
+        $email = (new CreateMarque($marque))->with([
+            'marque' => $marque,
+            // 'autre_variable' => 'Valeur de l\'autre variable',
+            // Ajoutez d'autres variables au besoin
+        ]);
+
+        Mail::to(Auth::user()->email)->send($email);
 
         return redirect()->route('marque.index');
     }
@@ -80,7 +87,13 @@ class MarqueController extends Controller
 
         $this->marqueRepository->update($request, $marque);
 
-        Mail::to(Auth::user()->email)->send(new InfoMarque($marque));
+        $email = (new UpdateMarque($marque))->with([
+            'marque' => $marque,
+            // 'autre_variable' => 'Valeur de l\'autre variable',
+            // Ajoutez d'autres variables au besoin
+        ]);
+
+        Mail::to(Auth::user()->email)->send($email);
 
         return redirect()->route('marque.index');
     }

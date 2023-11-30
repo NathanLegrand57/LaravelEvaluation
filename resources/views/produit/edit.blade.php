@@ -9,11 +9,11 @@
             @method('put')
 
             <div class="form-group">
-                <x-input-text property="nom" title="nom" maxlength="75" label="{{ __('Nom') }}" />
+                <x-input-text property="nom" title="nom" label="{{ __('Nom') }}" />
             </div>
 
             <div class="form-group">
-                <x-input-number property="prix" maxlength="20" label="{{ __('Prix') }}" />
+                <x-input-number property="prix" maxlength="20" max="10" label="{{ __('Prix') }}" />
             </div>
 
             <div class="form-group">

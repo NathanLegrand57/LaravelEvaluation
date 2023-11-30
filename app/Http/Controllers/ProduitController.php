@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\ProduitRepository;
 use App\Http\Requests\ProduitRequest;
-use App\Mail\InfoMail;
-use App\Mail\InfoProduit;
+use App\Mail\CreateProduit;
+use App\Mail\UpdateProduit;
 use App\Models\Marque;
 use App\Models\Produit;
 use Illuminate\Http\Request;
@@ -46,11 +46,18 @@ class ProduitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProduitRequest $request, Produit $produit)
+    public function store(ProduitRequest $request, Produit $produit, Marque $marque)
     {
         $this->produitRepository->store($request);
 
-        Mail::to(Auth::user()->email)->send(new InfoProduit($produit));
+        $email = (new CreateProduit($produit))->with([
+            'produit' => $produit,
+            'marque' => $marque,
+            // 'autre_variable' => 'Valeur de l\'autre variable',
+            // Ajoutez d'autres variables au besoin
+        ]);
+
+        Mail::to(Auth::user()->email)->send($email);
 
         return redirect()->route('produit.index');
     }
@@ -80,11 +87,18 @@ class ProduitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProduitRequest $request, Produit $produit)
+    public function update(ProduitRequest $request, Produit $produit, Marque $marque)
     {
         $this->produitRepository->update($request, $produit);
 
-        Mail::to(Auth::user()->email)->send(new InfoProduit($produit));
+        $email = (new UpdateProduit($produit))->with([
+            'produit' => $produit,
+            'marque' => $marque,
+            // 'autre_variable' => 'Valeur de l\'autre variable',
+            // Ajoutez d'autres variables au besoin
+        ]);
+
+        Mail::to(Auth::user()->email)->send($email);
 
         return redirect()->route('produit.index');
     }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\VenteRepository;
 use App\Http\Requests\VenteRequest;
-use App\Mail\InfoVente;
+use App\Mail\UpdateVente;
+use App\Mail\CreateVente;
 use App\Models\Vente;
 use App\Models\Produit;
 use Illuminate\Http\Request;
@@ -46,12 +47,18 @@ class VenteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(VenteRequest $request, Vente $vente)
+    public function store(VenteRequest $request, Vente $vente, Produit $produit)
     {
         $this->venteRepository->store($request);
 
-        Mail::to(Auth::user()->email)->send(new InfoVente($vente));
+        $email = (new CreateVente($vente))->with([
+            'vente' => $vente,
+            'produit' => $produit,
+            // 'autre_variable' => 'Valeur de l\'autre variable',
+            // Ajoutez d'autres variables au besoin
+        ]);
 
+        Mail::to(Auth::user()->email)->send($email);
         return redirect()->route('vente.index');
     }
 
@@ -81,11 +88,18 @@ class VenteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(VenteRequest $request, Vente $vente)
+    public function update(VenteRequest $request, Vente $vente, Produit $produit)
     {
         $this->venteRepository->update($request, $vente);
 
-        Mail::to(Auth::user()->email)->send(new InfoVente($vente));
+        $email = (new UpdateVente($vente))->with([
+            'vente' => $vente,
+            'produit' => $produit,
+            // 'autre_variable' => 'Valeur de l\'autre variable',
+            // Ajoutez d'autres variables au besoin
+        ]);
+
+        Mail::to(Auth::user()->email)->send($email);
         return redirect()->route('vente.index');
     }
 

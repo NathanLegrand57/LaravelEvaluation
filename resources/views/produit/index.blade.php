@@ -3,26 +3,23 @@
 @section('content')
     <h2 class="ms-3 mt-2">{{ __('Liste des produits') }}</h2>
     @can('produit-create')
-        <a href="{{ route('produit.create') }}" class="btn btn-success ms-3 mt-2">{{ __('Ajouter') }}</a>
+        <x-create-button property="produit" />
     @endcan
     @forelse ($produits as $produit)
         <div class="card m-3">
             <div class="card-body">
-                <h5 class="card-title">{{ __('Nom du produit') }} : {{ $produit->nom }}</h5>
+                <h5 class="card-title">{{ __('Nom du produit') }} : {{ $produit->marque->nom }}</h5>
                 <div class="btn-toolbar">
-                    <a href="{{ route('produit.show', ['produit' => $produit->id]) }}"
-                        class="btn btn-sm btn-primary m-1">{{ __('Détails') }}</a>
+                    {{-- <a href="{{ route('produit.show', ['produit' => $produit->id]) }}"
+                        class="btn btn-sm btn-primary m-1">{{ __('Détails') }}</a> --}}
+                    <x-details-button property="produit" :model="$produit" />
+
                     @can('produit-update')
-                        <a href="{{ route('produit.edit', ['produit' => $produit->id]) }}"
-                            class="btn btn-sm btn-warning m-1">{{ __('Modifier') }}</a>
+                        <x-update-button property="produit" :model="$produit" />
                     @endcan
-                    <form method="POST" action="{{ route('produit.destroy', ['produit' => $produit->id]) }}">
-                        @csrf
-                        @method('DELETE')
-                        @can('produit-retrieve')
-                            <button type="submit" class="btn btn-sm btn-danger delete-user m-1">{{ __('Supprimer') }}</button>
-                        @endcan
-                    </form>
+                    @can('marque-retrieve')
+                        <x-delete-button property="produit" :model="$produit" />
+                    @endcan
                 </div>
             </div>
         </div>

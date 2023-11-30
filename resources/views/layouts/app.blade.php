@@ -35,9 +35,9 @@
         @endif
 
         <!-- Page Content -->
-        <a class="btn btn-primary ms-3 mt-3" href="{{ route('vente.index') }}">{{ __('Listes des ventes') }}</a>
-        <a class="btn btn-primary ms-3 mt-3" href="{{ route('produit.index') }}">{{ __('Listes des produits') }}</a>
-        <a class="btn btn-primary ms-3 mt-3" href="{{ route('marque.index') }}">{{ __('Listes des marques') }}</a>
+        <a class="btn btn-primary ms-3 mt-3" href="{{ route('vente.index') }}">{{ __('Liste des ventes') }}</a>
+        <a class="btn btn-primary ms-3 mt-3" href="{{ route('produit.index') }}">{{ __('Liste des produits') }}</a>
+        <a class="btn btn-primary ms-3 mt-3" href="{{ route('marque.index') }}">{{ __('Liste des marques') }}</a>
         <div>
             <p class="m-3">{{ __('Vous naviguez en') }} [{{ App::getLocale() }}]
                 <a href="{{ route('language.change', ['code_iso' => 'fr']) }}">{{ __('French') }}</a>

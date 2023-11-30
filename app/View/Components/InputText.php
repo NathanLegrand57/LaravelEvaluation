@@ -15,8 +15,8 @@ class InputText extends Component
     public $label;
     public function __construct($property, $label)
     {
-        $this-> property = $property;
-        $this-> label = $label;
+        $this->property = $property;
+        $this->label = $label;
     }
 
     /**

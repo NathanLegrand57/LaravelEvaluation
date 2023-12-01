@@ -1,8 +1,8 @@
 
-{{-- <label for="{{ $property }}">{{ $label }}</label>
+<label for="{{ $property }}">{{ $label }}</label>
 <select class="form-control" name="{{ $property }}" id="{{ $property }}">
-    @foreach ($produits as $produit)
-        <option value="{{ $produit->id }}">{{ $produit->nom }}</option>
+    @foreach ($models as $model)
+        <option value="{{ $model->id }}">{{ $model->nom }}</option>
     @endforeach
-</select> --}}
+</select>
 

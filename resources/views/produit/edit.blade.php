@@ -21,7 +21,7 @@
             </div>
 
             <div class="form-group">
-                <label for="marque_id">{{ __('Marque') }}</label>
+                {{-- <label for="marque_id">{{ __('Marque') }}</label>
                 <select class="form-control" name="marque_id" id="marque_id">
                     @foreach ($marques as $marque)
                         <option value="{{ $marque->id }}"{{ $produit->marque_id == $marque->id ? 'selected' : '' }}>
@@ -31,7 +31,8 @@
                 </select>
                 @error('marque_id')
                     <p class="text-danger">{{ $message }}</p>
-                @enderror
+                @enderror --}}
+                <x-select-list property="marque_id" label="{{ __('Marque') }}" :models="$marques" />
             </div>
 
             <div class="form-group">

@@ -37,18 +37,45 @@ class VenteTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_create_vente_for_user(): void
+    public function test__access_create_vente_for_user(): void
     {
         $user = User::factory()->create();
-        Bouncer::assign('vendeur')->to($user);
-        Bouncer::allow('vendeur')->to('vente-create');
-
+        Bouncer::assign('gerant')->to($user);
+        Bouncer::allow('gerant')->to('vente-create');
+        Bouncer::refresh();
+        dd($user->getAbilities());
         $response = $this
             ->actingAs($user)
             ->get('/vente/create');
 
         $response->assertOk();
     }
+
+    // public function test_access_create_produit_for_user(): void
+    // {
+    //     $user = User::factory()->create();
+    //     Bouncer::assign('gerant')->to($user);
+    //     // Bouncer::allow('gerant')->to('produit-create');
+
+    //     $response = $this
+    //         ->actingAs($user)
+    //         ->get('/produit/create');
+
+    //     $response->assertOk();
+    // }
+
+    // public function test_access_create_marque_for_user(): void
+    // {
+    //     $user = User::factory()->create();
+    //     Bouncer::assign('gerant')->to($user);
+    //     // Bouncer::allow('gerant')->to('marque-create');
+
+    //     $response = $this
+    //         ->actingAs($user)
+    //         ->get('/marque/create');
+
+    //     $response->assertOk();
+    // }
 
 
     // public function testCreateVenteMethodReturnsCorrectView()

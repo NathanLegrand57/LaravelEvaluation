@@ -12,11 +12,13 @@ class SelectList extends Component
      * Create a new component instance.
      */
     public $property;
-    // public $label;
-    public function __construct($property)
+    public $label;
+    public $models;
+    public function __construct($property, $label, $models)
     {
         $this-> property = $property;
-        // $this-> label = $label;
+        $this-> label = $label;
+        $this-> models = $models;
     }
 
     /**

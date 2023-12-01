@@ -12,12 +12,13 @@
             </div>
 
             <div class="form-group">
-                <label for="produit_id">{{ __('Produit') }}</label>
+                {{-- <label for="produit_id">{{ __('Produit') }}</label>
                 <select class="form-control" name="produit_id" id="produit_id">
                     @foreach ($produits as $produit)
                         <option value="{{ $produit->id }}">{{ $produit->nom }}</option>
                     @endforeach
-                </select>
+                </select> --}}
+                <x-select-list property="produit_id" label="{{ __('Produit') }}" :models="$produits"/>
             </div>
 
             <div class="form-group">

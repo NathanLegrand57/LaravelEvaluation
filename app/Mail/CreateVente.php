@@ -14,6 +14,8 @@ class CreateVente extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $vente;
+
     /**
      * Create a new message instance.
      */

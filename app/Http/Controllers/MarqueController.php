@@ -33,7 +33,7 @@ class MarqueController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->can('marque-update')) {
+        if (Auth::user()->can('marque-create')) {
             return view('marque.create');
         }
 
@@ -49,8 +49,6 @@ class MarqueController extends Controller
 
         $email = (new CreateMarque($marque))->with([
             'marque' => $marque,
-            // 'autre_variable' => 'Valeur de l\'autre variable',
-            // Ajoutez d'autres variables au besoin
         ]);
 
         Mail::to(Auth::user()->email)->send($email);
@@ -89,8 +87,6 @@ class MarqueController extends Controller
 
         $email = (new UpdateMarque($marque))->with([
             'marque' => $marque,
-            // 'autre_variable' => 'Valeur de l\'autre variable',
-            // Ajoutez d'autres variables au besoin
         ]);
 
         Mail::to(Auth::user()->email)->send($email);

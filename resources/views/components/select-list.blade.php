@@ -1,4 +1,3 @@
-
 <label for="{{ $property }}">{{ $label }}</label>
 <select class="form-control" name="{{ $property }}" id="{{ $property }}">
     @foreach ($models as $model)

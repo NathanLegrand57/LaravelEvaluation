@@ -10,8 +10,6 @@
             <div class="card-body">
                 <h5 class="card-title">{{ __('Nom du produit') }} : {{ $produit->marque->nom }}</h5>
                 <div class="btn-toolbar">
-                    {{-- <a href="{{ route('produit.show', ['produit' => $produit->id]) }}"
-                        class="btn btn-sm btn-primary m-1">{{ __('Détails') }}</a> --}}
                     <x-details-button property="produit" :model="$produit" />
 
                     @can('produit-update')

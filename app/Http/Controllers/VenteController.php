@@ -21,7 +21,6 @@ class VenteController extends Controller
     public function __construct(VenteRepository $venteRepository)
     {
         $this->venteRepository = $venteRepository;
-        // $this->middleware('auth')->except(['index', 'show']);
     }
     public function index()
     {
@@ -36,7 +35,7 @@ class VenteController extends Controller
     {
         $produits = Produit::all();
 
-        if (Auth::user()->can('vente-update')) {
+        if (Auth::user()->can('vente-create')) {
             return view('vente.create', compact('produits'));
 
         }
@@ -54,8 +53,6 @@ class VenteController extends Controller
         $email = (new CreateVente($vente))->with([
             'vente' => $vente,
             'produit' => $produit,
-            // 'autre_variable' => 'Valeur de l\'autre variable',
-            // Ajoutez d'autres variables au besoin
         ]);
 
         Mail::to(Auth::user()->email)->send($email);
@@ -95,8 +92,6 @@ class VenteController extends Controller
         $email = (new UpdateVente($vente))->with([
             'vente' => $vente,
             'produit' => $produit,
-            // 'autre_variable' => 'Valeur de l\'autre variable',
-            // Ajoutez d'autres variables au besoin
         ]);
 
         Mail::to(Auth::user()->email)->send($email);

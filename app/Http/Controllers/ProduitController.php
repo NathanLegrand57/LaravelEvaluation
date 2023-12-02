@@ -21,7 +21,6 @@ class ProduitController extends Controller
     public function __construct(ProduitRepository $produitRepository)
     {
         $this->produitRepository = $produitRepository;
-        // $this->middleware('auth')->except(['index', 'show']);
     }
     public function index()
     {
@@ -53,8 +52,6 @@ class ProduitController extends Controller
         $email = (new CreateProduit($produit))->with([
             'produit' => $produit,
             'marque' => $marque,
-            // 'autre_variable' => 'Valeur de l\'autre variable',
-            // Ajoutez d'autres variables au besoin
         ]);
 
         Mail::to(Auth::user()->email)->send($email);
@@ -94,8 +91,6 @@ class ProduitController extends Controller
         $email = (new UpdateProduit($produit))->with([
             'produit' => $produit,
             'marque' => $marque,
-            // 'autre_variable' => 'Valeur de l\'autre variable',
-            // Ajoutez d'autres variables au besoin
         ]);
 
         Mail::to(Auth::user()->email)->send($email);

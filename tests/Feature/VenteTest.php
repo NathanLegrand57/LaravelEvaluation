@@ -5,22 +5,40 @@ namespace Tests\Feature;
 use App\Http\Controllers\VenteController;
 use App\Http\Repositories\VenteRepository;
 use App\Http\Requests\VenteRequest;
+use App\Mail\UpdateVente;
 use App\Models\User;
 use App\Models\Vente;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Mail;
 use Mockery;
 use Silber\Bouncer\BouncerFacade as Bouncer;
 use Tests\TestCase;
 
 class VenteTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function testIndexMethodReturnsCorrectView()
+    public function test_root_is_index_of_vente()
     {
-        $response = $this->get('/');
+        $user = User::factory()->create();
+        Bouncer::refresh();
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/');
+
+        $response->assertStatus(200);
+        $response->assertViewIs('vente.index');
+    }
+
+    public function test_Index_Method_Returns_Correct_View()
+    {
+        $user = User::factory()->create();
+        Bouncer::refresh();
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/vente');
+
         $response->assertStatus(200);
         $response->assertViewIs('vente.index');
     }
@@ -37,13 +55,24 @@ class VenteTest extends TestCase
         $response->assertOk();
     }
 
+    public function test_access_vente_create_for_user_without_abilities(): void
+    {
+        $user = User::factory()->create();
+        Bouncer::refresh();
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/vente/create');
+
+        $response->assertStatus(401);
+    }
+
     public function test__access_create_vente_for_user(): void
     {
         $user = User::factory()->create();
         Bouncer::assign('gerant')->to($user);
         Bouncer::allow('gerant')->to('vente-create');
         Bouncer::refresh();
-        dd($user->getAbilities());
         $response = $this
             ->actingAs($user)
             ->get('/vente/create');
@@ -51,78 +80,99 @@ class VenteTest extends TestCase
         $response->assertOk();
     }
 
-    // public function test_access_create_produit_for_user(): void
-    // {
-    //     $user = User::factory()->create();
-    //     Bouncer::assign('gerant')->to($user);
-    //     // Bouncer::allow('gerant')->to('produit-create');
+    public function test_users_can_create_vente(): void
+    {
+        $user = User::factory()->create();
+        Bouncer::assign('gerant')->to($user);
+        Bouncer::allow('gerant')->to('vente-create');
+        Bouncer::refresh();
 
-    //     $response = $this
-    //         ->actingAs($user)
-    //         ->get('/produit/create');
+        $response = $this;
+        $this->actingAs($user);
+        $response = $this->post('/vente', [
+            'quantite' => '3',
+            'produit_id' => '3',
+        ]);
 
-    //     $response->assertOk();
-    // }
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect('/vente');
+    }
+    public function test_access_edit_vente_for_user_without_abilities(): void
+    {
+        $user = User::factory()->create();
+        Bouncer::refresh();
 
-    // public function test_access_create_marque_for_user(): void
-    // {
-    //     $user = User::factory()->create();
-    //     Bouncer::assign('gerant')->to($user);
-    //     // Bouncer::allow('gerant')->to('marque-create');
+        $vente = Vente::factory()->create();
 
-    //     $response = $this
-    //         ->actingAs($user)
-    //         ->get('/marque/create');
+        $response = $this
+            ->actingAs($user)
+            ->get("/vente/{$vente->id}/edit");
 
-    //     $response->assertOk();
-    // }
+        $response->assertStatus(401);
+    }
 
+    public function test_users_can_update_vente(): void
+    {
+        $user = User::factory()->create();
+        Bouncer::assign('gerant')->to($user);
+        Bouncer::allow('gerant')->to('vente-update');
+        Bouncer::refresh();
 
-    // public function testCreateVenteMethodReturnsCorrectView()
-    // {
-    //     $response = $this->get(route('vente.index'));
-    //     $response->assertStatus(200);
-    //     $response->assertViewIs('vente.index');
-    // }
+        $vente = Vente::factory()->create();
 
-    // public function testCheckAllInputFull()
-    // {
-    //     // Créer un mock du repository
-    //     $mockRepository = Mockery::mock(VenteRepository::class);
+        $response = $this;
+        $this->actingAs($user);
+        $response = $this->patch("/vente/{$vente->id}", [
+            'quantite' => '3',
+            'produit_id' => '3',
+        ]);
 
-    //     // Injecter le mock du repository dans le contrôleur
-    //     $controller = new VenteController($mockRepository);
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect('/vente');
+    }
 
-    //     // Créer une fausse requête avec les données que vous souhaitez tester
-    //     $requestData = [
-    //         'quantite' => 'test quantite',
-    //         'user_id' => '1',
-    //         // autres champs...
-    //     ];
+    public function test_access_vente_cant_be_destroyed_for_user_without_abilities(): void
+    {
 
-    //     $request = new VenteRequest($requestData);
+        // Création d'un utilisateur avec les rôles nécessaires
+        $user = User::factory()->create();
+        Bouncer::refresh();
 
-    //     // Définir l'attente sur la méthode store du repository
-    //     $mockRepository
-    //         ->shouldReceive('store')
-    //         ->once()
-    //         ->with(Mockery::on(function ($arg) use ($requestData) {
-    //             return $arg instanceof Request &&
-    //                 $arg->input('quantite') === $requestData['quantite'] &&
-    //                 $arg->input('user_id') === $requestData['user_id'];
-    //             // Ajoutez d'autres conditions pour les autres champs si nécessaire
-    //         }));
+        // Création d'une vente
+        $vente = Vente::factory()->create();
 
-    //     // Appeler la méthode store du contrôleur
-    //     $response = $controller->store($request);
+        // Requête DELETE pour détruire la vente
+        $response = $this
+            ->actingAs($user)
+            ->delete("/vente/{$vente->id}");
 
-    //     // Vérifier que la réponse est une instance de RedirectResponse
-    //     $this->assertInstanceOf(\Illuminate\Http\RedirectResponse::class, $response);
+        $response->assertStatus(302);
+    }
 
-    //     // Extraire l'URL de redirection de la réponse
-    //     $redirectUrl = $response->getTargetUrl();
+    public function test_vente_can_be_destroyed(): void
+    {
 
-    //     // Vérifier que l'URL de redirection correspond à la route 'vente.index'
-    //     $this->assertEquals(route('vente.index'), $redirectUrl);
-    // }
+        // Création d'un utilisateur avec les rôles nécessaires
+        $user = User::factory()->create();
+        Bouncer::assign('gerant')->to($user);
+        Bouncer::allow('gerant')->to('vente-retrieve');
+        Bouncer::refresh();
+
+        // Création d'une vente
+        $vente = Vente::factory()->create();
+
+        // Vérification que la vente existe avant la destruction
+        $this->assertDatabaseHas('ventes', ['id' => $vente->id]);
+
+        // Requête DELETE pour détruire la vente
+        $response = $this
+            ->actingAs($user)
+            ->delete("/vente/{$vente->id}");
+
+        // Assurer une redirection après la destruction
+        $response->assertRedirect('/vente');
+
+        // Vérification que la colonne deleted_at de la vente supprimée s'actualise
+        $this->assertNotNull(Vente::withTrashed()->find($vente->id)->deleted_at);
+    }
 }

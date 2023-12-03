@@ -17,6 +17,7 @@ class UpdateVente extends Mailable
     /**
      * Create a new message instance.
      */
+    public $vente;
     public function __construct(Vente $vente)
     {
         $this->vente = $vente;

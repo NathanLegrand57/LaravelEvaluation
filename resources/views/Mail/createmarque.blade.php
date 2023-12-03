@@ -1,6 +1,5 @@
 <h1>Catégorie marque</h1>
-<p>Une marque a été créée avec les informations suivantes :</p>
+<p>Une nouvelle marque a été créée :</p>
 
-{{-- <strong>Nom du produit : </strong> {{ $marque->produit->nom }} <br/>
-<strong>Quantité : </strong> {{ $marque->quantite }} --}}
-
+<p><strong>Nom de la marque : </strong> {{ $marque->nom }}</p>
+<p><strong>Pays : </strong> {{ $marque->pays }}</p>

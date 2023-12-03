@@ -17,6 +17,7 @@ class CreateProduit extends Mailable
     /**
      * Create a new message instance.
      */
+    public $produit;
     public function __construct(Produit $produit)
     {
         $this->produit = $produit;

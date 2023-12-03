@@ -17,6 +17,7 @@ class UpdateMarque extends Mailable
     /**
      * Create a new message instance.
      */
+    public $marque;
     public function __construct(Marque $marque)
     {
         $this->marque = $marque;

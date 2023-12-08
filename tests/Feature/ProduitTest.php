@@ -97,6 +97,21 @@ class ProduitTest extends TestCase
 
         $response->assertStatus(401);
     }
+    public function test_access_edit_produit_for_user(): void
+    {
+        $user = User::factory()->create();
+        Bouncer::assign('gerant')->to($user);
+        Bouncer::allow('gerant')->to('produit-update');
+        Bouncer::refresh();
+
+        $produit = Produit::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->get("/produit/{$produit->id}/edit");
+
+        $response->assertStatus(200);
+    }
 
     public function test_users_can_update_produit(): void
     {

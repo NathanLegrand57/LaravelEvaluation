@@ -94,6 +94,21 @@ class MarqueTest extends TestCase
 
         $response->assertStatus(401);
     }
+    public function test_access_edit_marque_for_user(): void
+    {
+        $user = User::factory()->create();
+        Bouncer::assign('gerant')->to($user);
+        Bouncer::allow('gerant')->to('marque-update');
+        Bouncer::refresh();
+
+        $marque = Marque::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->get("/marque/{$marque->id}/edit");
+
+        $response->assertStatus(200);
+    }
 
     public function test_users_can_update_marque(): void
     {

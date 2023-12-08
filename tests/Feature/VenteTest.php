@@ -97,7 +97,7 @@ class VenteTest extends TestCase
         $response->assertSessionHasNoErrors();
         $response->assertRedirect('/vente');
     }
-    public function test_access_edit_vente_for_user_without_abilities(): void
+    public function test_access_edit_for_user_without_abilities(): void
     {
         $user = User::factory()->create();
         Bouncer::refresh();
@@ -109,6 +109,21 @@ class VenteTest extends TestCase
             ->get("/vente/{$vente->id}/edit");
 
         $response->assertStatus(401);
+    }
+    public function test_access_edit_for_user(): void
+    {
+        $user = User::factory()->create();
+        Bouncer::assign('gerant')->to($user);
+        Bouncer::allow('gerant')->to('vente-update');
+        Bouncer::refresh();
+
+        $vente = Vente::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->get("/vente/{$vente->id}/edit");
+
+        $response->assertStatus(200);
     }
 
     public function test_users_can_update_vente(): void

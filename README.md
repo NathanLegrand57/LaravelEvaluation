@@ -36,9 +36,9 @@
 - Exécuter ces lignes de commande :
 
     ```bash
-      vagrant ssh
-      cd /code/boutique
-      composer install
+        vagrant ssh
+        cd /code/boutique
+        composer install
     ```
 
 ### Alimentation de la base de données
@@ -46,9 +46,9 @@
  - Exécuter ces commandes pour alimenter la base de données : 
 
     ```bash
-      php artisan db:seed --class=VenteSeeder
-      php artisan db:seed --class=ProduitSeeder
-      php artisan db:seed --class=MarqueSeeder
+        php artisan db:seed --class=VenteSeeder
+        php artisan db:seed --class=ProduitSeeder
+        php artisan db:seed --class=MarqueSeeder
     ```
 
   ## Création des utilisateurs
@@ -122,19 +122,19 @@
 - Modifier la configuration de la base de données dans le fichier ``.env.testing`` en changeant le nom de la base ciblée par ``boutique_test`` :
 
     ```bash
-      DB_CONNECTION=mysql
-      DB_HOST=127.0.0.1
-      DB_PORT=3306
-      DB_DATABASE=boutique_test
-      DB_USERNAME=root
-      DB_PASSWORD=secret
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=boutique_test
+        DB_USERNAME=root
+        DB_PASSWORD=secret
     ```
     
 - Exécuter le cmd Windows, puis aller dans le dossier ``Homestead/`` 
 - Exécuter cette ligne de commande afin de redémarrer la machine virtuelle :
 
      ```bash
-      vagrant --reload provision
+        vagrant --reload provision
      ```
 
 - Une fois la machine redémarrée, il faut exécuter les migrations afin de structurer la base de données comme au début du projet
@@ -145,16 +145,16 @@
 - Exécuter ces lignes de commande :
 
     ```bash
-      vagrant ssh
-      cd /code/boutique
-      art test
+        vagrant ssh
+        cd /code/boutique
+        art test
     ```
     
 - Pour afficher le dashboard illustrant le taux de couverture des tests, il suffit d'exécuter ces commandes :
  
     ```bash
-      xon
-      XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html coverage
+        xon
+        XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html coverage
     ```
 
 - Enfin, pour visualiser les pages HTML générées, il faut trouver le fichier ``index.html`` se trouvant dans l'arboress (``coverage\index.html``) puis utiliser une extension permettant de visualiser la page html (``Live server`` par exemple)
@@ -167,10 +167,19 @@
 - Créer une nouvelle "inbox" puis dans "integrations", ouvrir la liste déroulante et cliquer sur Laravel 9+
 - Copier toutes les lignes qui apparaissent en-dessous
 - Exemple :
+
     ```php
-      MAIL_MAILER=smtp
-      MAIL_HOST=sandbox.smtp.mailtrap.io
-      MAIL_PORT=2525
-      MAIL_USERNAME=4060eeff71f1d3
-      MAIL_PASSWORD=********36b6
+        MAIL_MAILER=smtp
+        MAIL_HOST=sandbox.smtp.mailtrap.io
+        MAIL_PORT=2525
+        MAIL_USERNAME=4060eeff71f1d3
+        MAIL_PASSWORD=********36b6
     ```
+    
+- Coller ces lignes dans le fichier .env en remplaçant la partie similaire
+
+### Utilisation
+
+- Utiliser l'application web comme prévu et créer par exemple une nouvelle vente
+- Aller sur MailTrap et vérifier que le mail a bien été reçu
+

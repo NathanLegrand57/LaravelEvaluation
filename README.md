@@ -122,19 +122,19 @@
 - Modifier la configuration de la base de données dans le fichier ``.env.testing`` en changeant le nom de la base ciblée par ``boutique_test`` :
 
     ```bash
-        DB_CONNECTION=mysql
-        DB_HOST=127.0.0.1
-        DB_PORT=3306
-        DB_DATABASE=boutique_test
-        DB_USERNAME=root
-        DB_PASSWORD=secret
+      DB_CONNECTION=mysql
+      DB_HOST=127.0.0.1
+      DB_PORT=3306
+      DB_DATABASE=boutique_test
+      DB_USERNAME=root
+      DB_PASSWORD=secret
     ```
     
 - Exécuter le cmd Windows, puis aller dans le dossier ``Homestead/`` 
 - Exécuter cette ligne de commande afin de redémarrer la machine virtuelle :
 
      ```bash
-        vagrant --reload provision
+      vagrant --reload provision
      ```
 
 - Une fois la machine redémarrée, il faut exécuter les migrations afin de structurer la base de données comme au début du projet
@@ -158,3 +158,19 @@
     ```
 
 - Enfin, pour visualiser les pages HTML générées, il faut trouver le fichier ``index.html`` se trouvant dans l'arboress (``coverage\index.html``) puis utiliser une extension permettant de visualiser la page html (``Live server`` par exemple)
+
+## Mails
+
+### Configuration des fichiers
+
+- Se rendre sur le site [MailTrap](https://mailtrap.io/email-sandbox/) puis s'inscrire si ce n'est pas déjà fait
+- Créer une nouvelle "inbox" puis dans "integrations", ouvrir la liste déroulante et cliquer sur Laravel 9+
+- Copier toutes les lignes qui apparaissent en-dessous
+- Exemple :
+    ```php
+      MAIL_MAILER=smtp
+      MAIL_HOST=sandbox.smtp.mailtrap.io
+      MAIL_PORT=2525
+      MAIL_USERNAME=4060eeff71f1d3
+      MAIL_PASSWORD=********36b6
+    ```

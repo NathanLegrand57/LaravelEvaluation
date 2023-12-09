@@ -133,9 +133,9 @@
 - Exécuter le cmd Windows, puis aller dans le dossier ``Homestead/`` 
 - Exécuter cette ligne de commande afin de redémarrer la machine virtuelle :
 
-  ```bash
-    vagrant --reload provision
-  ```
+     ```bash
+        vagrant --reload provision
+     ```
 
 - Une fois la machine redémarrée, il faut exécuter les migrations afin de structurer la base de données comme au début du projet
 
@@ -146,27 +146,15 @@
 
     ```bash
       vagrant ssh
-      cd /code/boutique  
-    ```
-
-  - Une fois rendue dans le dossier ``boutique``, il ne reste plus qu'à exécuter les tests :
- 
-- Exécuter le cmd Windows, puis aller dans le dossier ``Homestead/`` 
-- Exécuter ces lignes de commande :
-
-    ```bash
+      cd /code/boutique
       art test
     ```
-
-  - Pour afficher le dashboard illustrant le taux de couverture des tests, il suffit d'exécuter ces commandes :
+    
+- Pour afficher le dashboard illustrant le taux de couverture des tests, il suffit d'exécuter ces commandes :
  
     ```bash
       xon
       XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html coverage
     ```
 
-    - Enfin, pour visualiser les pages HTML générées, il faut trouver le fichier ``index.html`` se trouvant ci-contre ``coverage\index.html`` puis utiliser une extension permettant de visualiser la page html (``Live server`` par exemple)
-
-  
-  
-
+- Enfin, pour visualiser les pages HTML générées, il faut trouver le fichier ``index.html`` se trouvant ci-contre ``coverage\index.html`` puis utiliser une extension permettant de visualiser la page html (``Live server`` par exemple)

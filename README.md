@@ -71,6 +71,7 @@
 ## Gestion des rôles et habilitations
 
 ### Bouncer
+
 - Se rendre à l'utilisateur Charles avec les commandes suivantes (ici l'id numéro 1) :
 
     ```bash
@@ -104,6 +105,68 @@
     ```
 - Aller sur le site ``boutique.test`` sur votre navigateur et se connecter avec les identifiants créés précédemment
 
+## Tests unitaires
 
- 
+### Configuration des fichiers
+
+- Modifier le fichier ``Homestead.yaml``
+
+- Ajouter dans ``databases`` :
+
+    ```php
+      - boutique_test
+    ```
+
+- Dupliquer le fichier ``.env`` puis renommer le nouveau en ``.env.testing``
+
+- Modifier la configuration de la base de données en changeant le nom de la base ciblée par ``boutique_test`` :
+
+    ```bash
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=boutique_test
+        DB_USERNAME=root
+        DB_PASSWORD=secret
+    ```
     
+- Exécuter le cmd Windows, puis aller dans le dossier ``Homestead/`` 
+- Exécuter cette ligne de commande afin de redémarrer la machine virtuelle :
+
+  ```bash
+    vagrant --reload provision
+  ```
+
+- Une fois la machine redémarrée, il faut exécuter les migrations afin de structurer la base de données comme au début du projet
+
+  ### Exécution des tests unitaires
+
+- Exécuter le cmd Windows, puis aller dans le dossier ``Homestead/`` 
+- Exécuter ces lignes de commande :
+
+    ```bash
+      vagrant ssh
+      cd /code/boutique  
+    ```
+
+  - Une fois rendue dans le dossier ``boutique``, il ne reste plus qu'à exécuter les tests :
+ 
+- Exécuter le cmd Windows, puis aller dans le dossier ``Homestead/`` 
+- Exécuter ces lignes de commande :
+
+    ```bash
+      art test
+    ```
+
+  - Pour afficher le dashboard illustrant le taux de couverture des tests, il suffit d'exécuter ces commandes :
+ 
+    ```bash
+      xon
+      XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html coverage
+    ```
+
+    - Enfin, pour visualiser les pages HTML générées, il faut trouver le fichier ``index.html`` se trouvant ci-contre ``coverage\index.html`` puis utiliser une extension permettant de visualiser la page html (``Live server`` par exemple)
+
+  
+  
+

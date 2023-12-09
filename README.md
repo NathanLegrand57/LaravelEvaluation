@@ -119,7 +119,7 @@
 
 - Dupliquer le fichier ``.env`` puis renommer le nouveau en ``.env.testing``
 
-- Modifier la configuration de la base de données en changeant le nom de la base ciblée par ``boutique_test`` :
+- Modifier la configuration de la base de données dans le fichier ``.env.testing`` en changeant le nom de la base ciblée par ``boutique_test`` :
 
     ```bash
         DB_CONNECTION=mysql
@@ -157,4 +157,4 @@
       XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html coverage
     ```
 
-- Enfin, pour visualiser les pages HTML générées, il faut trouver le fichier ``index.html`` se trouvant ci-contre ``coverage\index.html`` puis utiliser une extension permettant de visualiser la page html (``Live server`` par exemple)
+- Enfin, pour visualiser les pages HTML générées, il faut trouver le fichier ``index.html`` se trouvant dans l'arboress (``coverage\index.html``) puis utiliser une extension permettant de visualiser la page html (``Live server`` par exemple)
